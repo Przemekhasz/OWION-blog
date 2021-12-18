@@ -1,40 +1,41 @@
 <template>
-    <div>
+    <b-container class="bv-example-row bv-example-row-flex-cols">
         <h2 class="text-center">Lista wpisów</h2>
+        <v-row align="center" v-for="post in posts" :key="post.id">
+            <br />
+            <b-card
+                no-body
+                style="max-width: 20rem"
+                img-src="https://placekitten.com/380/200"
+                img-alt="Image"
+                img-top
+            >
+                <template #header>
+                    <h4 class="mb-0">{{ post.title }}</h4>
+                </template>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Tytuł</th>
-                    <th>Opis</th>
-                    <!-- <th>Akcje</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="post in posts" :key="post.id">
-                    <td>{{ post.id }}</td>
-                    <td>{{ post.title }}</td>
-                    <td>{{ post.description }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <router-link
-                                :to="{ name: 'edit', params: { id: post.id } }"
-                                class="btn btn-success"
-                                >Edytuj</router-link
-                            >
-                            <button
-                                class="btn btn-danger"
-                                @click="deletePost(post.id)"
-                            >
-                                Usuń
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                <b-card-body>
+                    <b-card-text>
+                        {{ post.description }}
+                    </b-card-text>
+                </b-card-body>
+
+                <b-card-body>
+                    <router-link
+                        :to="{
+                            name: 'edit',
+                            params: { id: post.id },
+                        }"
+                        class="btn btn-success"
+                        >Edytuj</router-link
+                    >
+                    <button class="btn btn-danger" @click="deletePost(post.id)">
+                        Usuń
+                    </button>
+                </b-card-body>
+            </b-card>
+        </v-row>
+    </b-container>
 </template>
 
 <script>

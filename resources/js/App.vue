@@ -1,17 +1,25 @@
 <template>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav">
-                    <router-link to="/" class="nav-item nav-link">
-                        Posts
-                    </router-link>
-                    <router-link to="/create" class="nav-item nav-link">
-                        Create Post
-                    </router-link>
-                </div>
-            </div>
-        </nav>
+    <div>
+        <b-navbar toggleable type="dark" variant="dark">
+            <router-link to="/" class="nav-item nav-link"> OWION </router-link>
+
+            <b-navbar-toggle target="navbar-toggle-collapse">
+                <template #default="{ expanded }">
+                    <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+                    <b-icon v-else icon="chevron-bar-down"></b-icon>
+                </template>
+            </b-navbar-toggle>
+
+            <b-collapse id="navbar-toggle-collapse" is-nav>
+                <b-navbar-nav class="ml-auto">
+                    <b-nav-item href="#">
+                        <router-link to="/create" class="nav-item nav-link">
+                            Utwórz wpis
+                        </router-link>
+                    </b-nav-item>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
 
         <router-view> </router-view>
     </div>

@@ -15,18 +15,9 @@ class PostsController extends Controller
      */
     public function index()
     {
+        // if !posts return "Empty list"
         $posts = Posts::all()->toArray();
         return array_reverse($posts);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
     }
 
     /**
@@ -37,6 +28,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        // Add validation
         $post = new Posts([
             'title' => $request->input('title'),
             'description' => $request->input('description')
@@ -55,19 +47,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        // if not find id - return err
         $post = Posts::find($id);
         return response()->json($post);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -79,6 +61,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Add validation
         $post = Posts::find($id);
         $post->update($request->all());
 
@@ -93,6 +76,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        // Add confirm
         $post = Posts::find($id);
         $post->delete();
 
